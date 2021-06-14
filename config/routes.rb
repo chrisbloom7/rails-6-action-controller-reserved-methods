@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   ActionController::Base.instance_methods.each do |method_name|
     next unless method_name.to_s =~ /\A[a-z]\w*[a-z]\z/
 
-    kontroller_name = "#{method_name.to_s.camelize}Test"
+    kontroller_name = method_name.to_s.camelize
 
     get "/test_#{method_name}/#{method_name}",
       controller: kontroller_name.underscore,
