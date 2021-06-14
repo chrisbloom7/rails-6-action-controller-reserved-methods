@@ -25,6 +25,7 @@ class ReservedMethodReporter < Minitest::Reporters::BaseReporter
     filename = File.join(@reports_path, "#{REPORT_PREFIX}-#{timestamp}.csv")
     puts "Writing CSV report to #{filename}"
     CSV.open(filename, "w") do |csv|
+      csv << %w[test\ result reserved\ method call\ type error\ reported]
       tests.reject(&:passed?).map do |test|
         e = test.failure
         call_type = if test.name =~ /indirectly/
